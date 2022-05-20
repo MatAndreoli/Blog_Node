@@ -1,0 +1,27 @@
+{
+  "name": "nodejs_project",
+  "version": "1.0.0",
+  "description": "A project in Node for study purposes",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./app-server.js",
+    "build:db": "docker compose up"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "connect-flash": "^0.1.1",
+    "dotenv": "^16.0.1",
+    "dotenv-expand": "^8.0.3",
+    "express": "^4.18.1",
+    "express-session": "^1.17.3",
+    "mongoose": "^6.3.4",
+    "mustache-express": "^1.3.2",
+    "nodemon": "^2.0.16"
+  },
+  "nodemonConfig": {
+    "verbose": true,
+    "ext": "js,json,mustache"
+  }
+}
