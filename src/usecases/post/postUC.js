@@ -36,7 +36,6 @@ exports.findById = async (id, req, res) => {
 exports.updateById = async (postUpdatedValues, req, res) => {
   await Posts.findById(postUpdatedValues._id)
     .then((post) => {
-      console.log('🚀 ==> .then ==> post', post); 
       post.title = postUpdatedValues.title;
       post.slug = postUpdatedValues.slug;
       post.content = postUpdatedValues.content;
