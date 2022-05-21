@@ -16,6 +16,8 @@ router.get(`/${prefix.posts}`, postController.posts);
 
 router.get(`/${prefix.posts}/add`, postController.addPost);
 
+router.post(`/${prefix.posts}/new`, postController.createPost);
+
 //! Categories routes
 router.get(`/${prefix.cats}`, categoryController.cats);
 

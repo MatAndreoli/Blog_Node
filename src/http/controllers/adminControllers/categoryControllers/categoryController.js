@@ -45,7 +45,7 @@ exports.createCat = (req, res) => {
   errors = catUC.validateNameAndSlug([], req.body);
 
   if (errors.length > 0) {
-    res.render('admin/addCatsView', { errors });
+    res.render('admin/categories/addCatsView', { errors });
     return;
   }
 

@@ -23,8 +23,22 @@
       {{#error_msg}}
       <p class="alert alert-danger">{{ error_msg }}</p>
       {{/error_msg}}
-      
       <a href="/admin/posts/add"><h3>Add a new Post</h3></a>
+
+      {{#posts}}
+      <div class="card mb-1">
+        <div class="card-body">
+          <h4>{{ title }}</h4>
+          <small>Description: {{ description }}</small><br>
+          <small>Date: {{ date }}</small>
+          <p>{{ content }}</p>
+          <p>Category: {{ category.name }}</p>
+        </div>
+      </div>
+      {{/posts}}
+      {{^posts}}
+      <p class="alert alert-info">There is nothing here yet</p>
+      {{/posts}}
     </div>
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
