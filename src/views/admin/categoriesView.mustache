@@ -15,6 +15,8 @@
   </head>
   <body>
     <div class="container mt-5">
+      <h1 class="alert alert-dark">This is the categories page</h1>
+
       {{#success_msg}}
       <p class="alert alert-success">{{ success_msg }}</p>
       {{/success_msg}}
@@ -22,14 +24,19 @@
       <p class="alert alert-danger">{{ error_msg }}</p>
       {{/error_msg}}
 
-      <h1 class="alert alert-dark">This is the categories page</h1>
       <a href="/admin/cats/add"><h3>Add a new Category</h3></a>
 
       {{#categories}}
       <div class="card mb-1">
         <div class="card-body">
           <h4>{{ name }}</h4>
-          <small>Slug: {{ slug }}</small>
+          <small>Slug: {{ slug }}</small
+          ><br />
+          <a href="/admin/cats/edit/{{{_id}}}"
+            ><button class="btn btn-success mt-4">
+              Edit category {{ _id }}
+            </button></a
+          >
         </div>
       </div>
       {{/categories}}

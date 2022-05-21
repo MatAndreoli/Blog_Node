@@ -13,4 +13,8 @@ router.get('/cats/add', adminController.addCats);
 
 router.post('/cats/new', adminController.createCat);
 
+router.post('/cats/edit', adminController.updateCat);
+
+router.get('/cats/edit/:id', adminController.editCat)
+
 module.exports = router;

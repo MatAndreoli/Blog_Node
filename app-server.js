@@ -44,18 +44,7 @@ app.set('view options', { layout: 'layouts/index' });
 const g = (_req, res) => {
   res.render('layouts/index');
 };
-app.get(
-  '/',
-  (req, res, next) => {
-    if (req.headers.key == 123456) {
-      console.log("🚀Hey there, I' a middleware");
-      next();
-      return;
-    }
-    console.log('Not allowed!!');
-  },
-  g
-);
+app.get('/', g);
 
 app.use('/admin', adminRoutes);
 

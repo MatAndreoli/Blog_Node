@@ -1,37 +1,52 @@
 const catUC = require('../../usecases/category/catUC');
 
 exports.main = (_req, res) => {
-  res.render('admin/adminMain');
+  res.render('admin/adminMainView');
 };
 
 exports.posts = (_req, res) => {
-  res.render('admin/posts');
+  res.render('admin/postsView');
 };
 
 exports.cats = async (req, res) => {
   const categories = await catUC.findAll(req, res);
-  res.render('admin/categories', { categories });
+  res.render('admin/categoriesView', { categories });
 };
 
 exports.addCats = (_req, res) => {
-  res.render('admin/addCats');
+  res.render('admin/addCatsView');
+};
+
+exports.editCat = async (req, res) => {
+  const _id = req.params.id;
+  const catFound = await catUC.findById(_id, req, res);
+  res.render('admin/editCategoryView', { catFound });
+};
+
+exports.updateCat = async (req, res) => {
+  var errors = [];
+
+  errors = catUC.validateNameAndSlug([], req.body);
+
+  catFound = { _id: req.body.id, name: req.body.name, slug: req.body.slug };
+  if (errors.length > 0) {
+    res.render('admin/editCategoryView', { errors, catFound });
+    return;
+  }
+
+  req.flash('success_msg', 'Category successfully updated');
+  const updatedCategory = { ...catFound };
+  res.redirect('/admin/cats');
+  catUC.updateById(updatedCategory, req, res);
 };
 
 exports.createCat = (req, res) => {
   var errors = [];
 
-  if (!req.body.name) {
-    errors.push({ text: 'Invalid Name' });
-  }
-  if (req.body.name.length < 4) {
-    errors.push({ text: 'Category name is too small' });
-  }
-  if (!req.body.slug) {
-    errors.push({ text: 'Invalid slug' });
-  }
+  errors = catUC.validateNameAndSlug([], req.body);
 
   if (errors.length > 0) {
-    res.render('admin/addCats', { errors });
+    res.render('admin/addCatsView', { errors });
     return;
   }
 
