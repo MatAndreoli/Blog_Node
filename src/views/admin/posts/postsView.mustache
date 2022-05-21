@@ -16,6 +16,15 @@
   <body>
     <div class="container mt-5">
       <h1 class="alert alert-dark">This is the posts page</h1>
+
+      {{#success_msg}}
+      <p class="alert alert-success">{{ success_msg }}</p>
+      {{/success_msg}}
+      {{#error_msg}}
+      <p class="alert alert-danger">{{ error_msg }}</p>
+      {{/error_msg}}
+      
+      <a href="/admin/posts/add"><h3>Add a new Post</h3></a>
     </div>
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"

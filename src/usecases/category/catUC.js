@@ -66,9 +66,11 @@ exports.addToDb = (payload, req, res) => {
       console.log(`Category '${payload.name}' successfully created`);
     })
     .catch((err) => {
-      req.flash('error_msg', 'Failed to create category');
+      err.code == 11000
+        ? req.flash('error_msg', 'Category name already taken')
+        : req.flash('error_msg', 'Failed to create category');
       res.redirect('/admin/cats');
-      console.log('🚀Something happened', err);
+      console.log('🚀Something happened', err.code);
     });
 };
 

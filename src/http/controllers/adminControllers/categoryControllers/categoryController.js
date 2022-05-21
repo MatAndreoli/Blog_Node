@@ -1,26 +1,22 @@
-const catUC = require('../../usecases/category/catUC');
+const catUC = require('../../../../usecases/category/catUC');
 
 exports.main = (_req, res) => {
   res.render('admin/adminMainView');
 };
 
-exports.posts = (_req, res) => {
-  res.render('admin/postsView');
-};
-
 exports.cats = async (_req, res) => {
   const categories = await catUC.findAll();
-  res.render('admin/categoriesView', { categories });
+  res.render('admin/categories/categoriesView', { categories });
 };
 
 exports.addCats = (_req, res) => {
-  res.render('admin/addCatsView');
+  res.render('admin/categories/addCatsView');
 };
 
 exports.editCat = async (req, res) => {
   const _id = req.params.id;
   const catFound = await catUC.findById(_id, req, res);
-  res.render('admin/editCategoryView', { catFound });
+  res.render('admin/categories/editCategoryView', { catFound });
 };
 
 exports.deleteCat = (req, res) => {
@@ -35,7 +31,7 @@ exports.updateCat = async (req, res) => {
 
   catFound = { _id: req.body.id, name: req.body.name, slug: req.body.slug };
   if (errors.length > 0) {
-    res.render('admin/editCategoryView', { errors, catFound });
+    res.render('admin/categories/editCategoryView', { errors, catFound });
     return;
   }
 

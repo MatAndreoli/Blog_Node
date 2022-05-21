@@ -1,22 +1,32 @@
 const { Router } = require('express');
 const router = Router();
 
-const adminController = require('../controllers/adminController');
+const categoryController = require('../controllers/adminControllers/categoryControllers/categoryController');
+const postController = require('../controllers/adminControllers/postsControllers/postController');
 
-router.get('/', adminController.main);
+const prefix = {
+  cats: 'cats',
+  posts: 'posts',
+};
 
-router.get('/posts', adminController.posts);
+router.get('/', categoryController.main);
 
-router.get('/cats', adminController.cats);
+//! Posts routes
+router.get(`/${prefix.posts}`, postController.posts);
 
-router.get('/cats/add', adminController.addCats);
+router.get(`/${prefix.posts}/add`, postController.addPost);
 
-router.post('/cats/new', adminController.createCat);
+//! Categories routes
+router.get(`/${prefix.cats}`, categoryController.cats);
 
-router.post('/cats/edit', adminController.updateCat);
+router.get(`/${prefix.cats}/add`, categoryController.addCats);
 
-router.get('/cats/edit/:id', adminController.editCat);
+router.post(`/${prefix.cats}/new`, categoryController.createCat);
 
-router.post('/cats/delete', adminController.deleteCat);
+router.post(`/${prefix.cats}/edit`, categoryController.updateCat);
+
+router.get(`/${prefix.cats}/edit/:id`, categoryController.editCat);
+
+router.post(`/${prefix.cats}/delete`, categoryController.deleteCat);
 
 module.exports = router;

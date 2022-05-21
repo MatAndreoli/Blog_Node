@@ -15,19 +15,20 @@
   </head>
   <body>
     <div class="container mt-5">
-      <h1 class="alert alert-dark">This is the form to add categories</h1>
+      <h1 class="alert alert-dark">This is the form to add posts</h1>
       <div class="card m-3">
         <div class="card-body">
+          <h2>New Post</h2>
           <div class="container mt-5">
             <form action="/admin/cats/new" method="post">
               <div class="mb-3">
-                <label for="NewCategory" class="form-label">New Category</label>
+                <label for="Title" class="form-label">Title</label>
                 <input
-                  name="name"
+                  name="title"
                   type="text"
                   class="form-control"
-                  id="NewCategory"
-                  placeholder="Programming"
+                  id="Title"
+                  placeholder="Vue is amazing!!"
                 />
               </div>
               <div class="mb-3">
@@ -37,8 +38,42 @@
                   type="text"
                   class="form-control"
                   id="Slug"
-                  placeholder="Programming"
+                  placeholder="vue"
                 />
+              </div>
+              <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <input
+                  name="description"
+                  type="text"
+                  class="form-control"
+                  id="description"
+                  placeholder="What is it about?"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="Content" class="form-label">Content</label>
+                <input
+                  name="content"
+                  class="form-control"
+                  id="Content"
+                  placeholder="Your text here..."
+                />
+              </div>
+              <div class="mb-3">
+                <label for="category" class="form-label">Category</label>
+                <select
+                  name="category"
+                  class="form-select"
+                  aria-label="Default select example"
+                >
+                  {{#categories}}
+                  <option value="{{ _id }}">{{ name }}</option>
+                  {{/categories}}
+                  {{^categories}}
+                  <option value="0">No categories</option>
+                  {{/categories}}
+                </select>
               </div>
               <button class="btn btn-info">Create</button>
             </form>
