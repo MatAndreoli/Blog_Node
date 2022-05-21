@@ -30,3 +30,38 @@ exports.createPost = async (req, res) => {
   };
   postUC.addToDb(post, req, res);
 };
+
+exports.editPost = async (req, res) => {
+  const _id = req.params.id;
+
+  const postFound = await postUC.findById(_id, req, res);
+  const postCat = await catUC.findById(postFound.category, req, res);
+  const catFoundAll = await catUC.findAll();
+
+  res.render('admin/posts/editPostView', { postFound, catFoundAll, postCat });
+};
+
+exports.updatePost = async (req, res) => {
+  var errors = [];
+
+  errors = postUC.validatePostValues([], req.body);
+
+  const postFound = {
+    _id: req.body.id,
+    title: req.body.title,
+    slug: req.body.slug,
+    description: req.body.description,
+    content: req.body.content,
+    category: req.body.category,
+  };
+
+  const postCat = await catUC.findById(postFound.category, req, res);
+  if (errors.length > 0) {
+    res.render('admin/posts/editPostView', { errors, postFound, postCat });
+    return;
+  }
+
+  const updatedPost = { ...postFound };
+  console.log('🚀 ==> updatedPost', updatedPost);
+  postUC.updateById(updatedPost, req, res);
+};

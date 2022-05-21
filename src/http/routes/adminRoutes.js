@@ -18,6 +18,10 @@ router.get(`/${prefix.posts}/add`, postController.addPost);
 
 router.post(`/${prefix.posts}/new`, postController.createPost);
 
+router.post(`/${prefix.posts}/edit`, postController.updatePost);
+
+router.get(`/${prefix.posts}/edit/:id`, postController.editPost);
+
 //! Categories routes
 router.get(`/${prefix.cats}`, categoryController.cats);
 
