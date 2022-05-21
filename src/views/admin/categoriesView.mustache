@@ -33,10 +33,15 @@
           <small>Slug: {{ slug }}</small
           ><br />
           <a href="/admin/cats/edit/{{{_id}}}"
-            ><button class="btn btn-success mt-4">
-              Edit category {{ _id }}
-            </button></a
+            ><button class="btn btn-success mt-4">Edit category</button></a
           >
+          <br />
+          <form action="/admin/cats/delete" method="post">
+            <input type="hidden" name="id" value="{{ _id }}" />
+            <button type="submit" class="btn btn-danger mt-4">
+              Delete category
+            </button>
+          </form>
         </div>
       </div>
       {{/categories}}

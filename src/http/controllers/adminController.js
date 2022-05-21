@@ -8,8 +8,8 @@ exports.posts = (_req, res) => {
   res.render('admin/postsView');
 };
 
-exports.cats = async (req, res) => {
-  const categories = await catUC.findAll(req, res);
+exports.cats = async (_req, res) => {
+  const categories = await catUC.findAll();
   res.render('admin/categoriesView', { categories });
 };
 
@@ -23,6 +23,11 @@ exports.editCat = async (req, res) => {
   res.render('admin/editCategoryView', { catFound });
 };
 
+exports.deleteCat = (req, res) => {
+  const { id } = req.body;
+  catUC.deleteById(id, req, res);
+};
+
 exports.updateCat = async (req, res) => {
   var errors = [];
 
@@ -34,9 +39,7 @@ exports.updateCat = async (req, res) => {
     return;
   }
 
-  req.flash('success_msg', 'Category successfully updated');
   const updatedCategory = { ...catFound };
-  res.redirect('/admin/cats');
   catUC.updateById(updatedCategory, req, res);
 };
 
@@ -50,11 +53,9 @@ exports.createCat = (req, res) => {
     return;
   }
 
-  req.flash('success_msg', 'Category successfully created');
   const newCategoria = {
     name: req.body.name,
     slug: req.body.slug,
   };
-  res.redirect('/admin/cats');
   catUC.addToDb(newCategoria, req, res);
 };

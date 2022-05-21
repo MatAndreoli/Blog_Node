@@ -15,6 +15,8 @@ router.post('/cats/new', adminController.createCat);
 
 router.post('/cats/edit', adminController.updateCat);
 
-router.get('/cats/edit/:id', adminController.editCat)
+router.get('/cats/edit/:id', adminController.editCat);
+
+router.post('/cats/delete', adminController.deleteCat);
 
 module.exports = router;
