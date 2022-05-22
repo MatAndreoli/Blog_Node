@@ -11,6 +11,7 @@ const session = require('express-session');
 const flash = require('connect-flash');
 
 const adminRoutes = require('./src/http/routes/adminRoutes');
+const routes = require('./src/http/routes/routes')
 
 //! Configs
 app.use(
@@ -41,14 +42,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('view options', { layout: 'layouts/index' });
 
 //! Routes
-const g = (_req, res) => {
-  res.render('layouts/index');
-};
-app.get('/', g);
+app.use('/', routes);
 
 app.use('/admin', adminRoutes);
 
-//? Starting Server
+//! Starting Server
 const port = process.env.APP_PORT;
 app.listen(port, () => {
   console.log('Server running on port', port);

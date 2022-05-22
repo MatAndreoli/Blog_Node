@@ -33,6 +33,22 @@ exports.findById = async (id, req, res) => {
   return post;
 };
 
+exports.findBySlug = async (slug, req, res) => {
+  let post;
+  await Posts.findOne({ slug })
+    .populate('category')
+    .then((pst) => {
+      post = pst;
+      console.log(`Post '${post.title}' was found`);
+    })
+    .catch((err) => {
+      msg.flashMsg(req, 'error_msg', 'Failed to find post by slug');
+      res.redirect('/');
+      console.log('🚀Something happened', err);
+    });
+  return post;
+};
+
 exports.updateById = async (postUpdatedValues, req, res) => {
   await Posts.findById(postUpdatedValues._id)
     .then((post) => {
