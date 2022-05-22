@@ -36,12 +36,19 @@
             <li class="nav-item">
               <a class="nav-link" href="/cats">Categories</a>
             </li>
+            {{#user}}
+            <li class="nav-item">
+              <a class="nav-link" href="/users/logout">Logout</a>
+            </li>
+            {{/user}}
+            {{^user}}
             <li class="nav-item">
               <a class="nav-link" href="/users/login">Login</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/users/register">Register</a>
             </li>
+            {{/user}}
             <li class="nav-item">
               <a class="nav-link" href="/admin">Admin</a>
             </li>

@@ -58,6 +58,9 @@
             {{#error}}
             <p class="alert alert-danger">{{ error }}</p>
             {{/error}}
+            {{#error_msg}}
+            <p class="alert alert-danger">{{ error_msg }}</p>
+            {{/error_msg}}
             <form action="/users/login" method="post">
               <div class="mb-3">
                 <label for="Email" class="form-label">Email</label>

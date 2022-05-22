@@ -36,12 +36,19 @@
             <li class="nav-item">
               <a class="nav-link" href="/cats">Categories</a>
             </li>
+            {{#user}}
+            <li class="nav-item">
+              <a class="nav-link" href="/users/logout">Logout</a>
+            </li>
+            {{/user}}
+            {{^user}}
             <li class="nav-item">
               <a class="nav-link" href="/users/login">Login</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/users/register">Register</a>
             </li>
+            {{/user}}
             <li class="nav-item">
               <a class="nav-link" href="/admin">Admin</a>
             </li>
@@ -51,12 +58,18 @@
     </nav>
 
     <div class="container mt-5">
+      {{ success_msg }}
       {{#success_msg}}
       <p class="alert alert-success">{{ success_msg }}</p>
       {{/success_msg}}
       {{#error_msg}}
       <p class="alert alert-danger">{{ error_msg }}</p>
       {{/error_msg}}
+
+      {{#user}}
+      <p></p>
+      {{/user}}
+      {{^user}}
       <div class="p-5 mb-4 bg-light rounded-3">
         <div class="container-fluid py-2">
           <h1 class="display-5 fw-bold">Welcome, to Blog NodeJS</h1>
@@ -72,6 +85,7 @@
           </a>
         </div>
       </div>
+      {{/user}}
       <hr />
       <h1 class="alert alert-primary">Last posts</h1>
       {{#posts}}

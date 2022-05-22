@@ -15,6 +15,7 @@ require('./config/auth')(passport);
 const adminRoutes = require('./src/http/routes/adminRoutes');
 const routes = require('./src/http/routes/routes');
 const usersRoutes = require('./src/http/routes/usersRoutes');
+const validateAdmin = require('./src/middlewares/isAdmin');
 
 //! Configs
 app.use(
@@ -53,7 +54,7 @@ app.use('/', routes);
 
 app.use('/users', usersRoutes);
 
-app.use('/admin', adminRoutes);
+app.use('/admin', validateAdmin.isAdmin, adminRoutes);
 
 //! Starting Server
 const port = process.env.APP_PORT;

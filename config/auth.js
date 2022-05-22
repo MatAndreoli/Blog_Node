@@ -5,7 +5,6 @@ require('../src/models/Users');
 
 const User = mongoose.model('users');
 module.exports = function (passport) {
-  console.log('passport');
   passport.use(
     new localStrategy(
       { usernameField: 'email', passwordField: 'password' },
