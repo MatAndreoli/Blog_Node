@@ -4,6 +4,10 @@ exports.register = (_req, res) => {
   res.render('users/registerView');
 };
 
+exports.login = (_req, res) => {
+  res.render('users/loginFormView');
+};
+
 exports.createAccount = (req, res) => {
   let errors = [];
   errors = userUC.validateUserValues([], req.body);

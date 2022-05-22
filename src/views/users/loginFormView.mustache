@@ -37,7 +37,7 @@
               <a class="nav-link" href="/cats">Categories</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/users/login">Login</a>
+              <a class="nav-link" href="#">Login</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/users/register">Register</a>
@@ -53,77 +53,12 @@
     <div class="container">
       <div class="card m-3">
         <div class="card-body">
-          <h2>Create an account</h2>
-          {{#error_msg}}
-          <p class="alert alert-danger">{{ error_msg }}</p>
-          {{/error_msg}}
-          {{#errors}}
-          <p class="alert alert-danger mt-4">{{{text}}}</p>
-          {{/errors}}
+          <h2>Login</h2>
           <div class="container mt-5">
-            {{#values}}
-            <form action="/users/create-account" method="post">
-              <div class="mb-3">
-                <label for="NewCategory" class="form-label">Name</label>
-                <input
-                  value="{{ name }}"
-                  name="name"
-                  type="text"
-                  class="form-control"
-                  id="NewCategory"
-                  placeholder="Matheus Andreoli"
-                />
-              </div>
-              <div class="mb-3">
-                <label for="Email" class="form-label">Email</label>
-                <input
-                  name="email"
-                  value="{{ email }}"
-                  type="email"
-                  class="form-control"
-                  id="Email"
-                  placeholder="programmer@program.com"
-                />
-              </div>
-              <div class="mb-3">
-                <label for="Password" class="form-label">Password</label>
-                <input
-                  value="{{ password }}"
-                  name="password"
-                  type="password"
-                  class="form-control"
-                  id="Password"
-                  placeholder="123456"
-                />
-              </div>
-              <div class="mb-3">
-                <label for="Password2" class="form-label"
-                  >Confirm Password</label
-                >
-                <input
-                  name="password2"
-                  type="password"
-                  class="form-control"
-                  id="Password2"
-                  placeholder="123456"
-                />
-              </div>
-              <button class="btn btn-success">Create</button>
-            </form>
-
-            {{/values}}
-            {{^values}}
-            <form action="/users/create-account" method="post">
-              <div class="mb-3">
-                <label for="NewCategory" class="form-label">Name</label>
-                <input
-                  name="name"
-                  type="text"
-                  class="form-control"
-                  id="NewCategory"
-                  placeholder="Matheus Andreoli"
-                />
-              </div>
+            {{#error}}
+            <p class="alert alert-danger">{{ error }}</p>
+            {{/error}}
+            <form action="/users/login" method="post">
               <div class="mb-3">
                 <label for="Email" class="form-label">Email</label>
                 <input
@@ -144,21 +79,8 @@
                   placeholder="123456"
                 />
               </div>
-              <div class="mb-3">
-                <label for="Password2" class="form-label"
-                  >Confirm Password</label
-                >
-                <input
-                  name="password2"
-                  type="password"
-                  class="form-control"
-                  id="Password2"
-                  placeholder="123456"
-                />
-              </div>
               <button class="btn btn-success">Create</button>
             </form>
-            {{/values}}
           </div>
         </div>
       </div>
