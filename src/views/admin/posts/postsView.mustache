@@ -36,7 +36,11 @@
 
           <a href="/admin/posts/edit/{{{id}}}"
             ><button class="btn btn-success mt-4">Edit post</button></a
-          >
+          ><br />
+          <form action="/admin/posts/delete" method="post">
+            <input type="hidden" name="id" value="{{{id}}}" />
+            <button class="btn btn-danger mt-4">Delete post</button>
+          </form>
         </div>
       </div>
       {{/posts}}

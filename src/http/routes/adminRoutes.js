@@ -22,6 +22,8 @@ router.post(`/${prefix.posts}/edit`, postController.updatePost);
 
 router.get(`/${prefix.posts}/edit/:id`, postController.editPost);
 
+router.post(`/${prefix.posts}/delete`, postController.deleteById);
+
 //! Categories routes
 router.get(`/${prefix.cats}`, categoryController.cats);
 

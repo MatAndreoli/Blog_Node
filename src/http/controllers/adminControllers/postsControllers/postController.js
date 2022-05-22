@@ -65,3 +65,8 @@ exports.updatePost = async (req, res) => {
   console.log('🚀 ==> updatedPost', updatedPost);
   postUC.updateById(updatedPost, req, res);
 };
+
+exports.deleteById = (req, res) => {
+  const { id } = req.body;
+  postUC.deleteById(id, req, res);
+};

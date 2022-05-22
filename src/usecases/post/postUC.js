@@ -41,7 +41,7 @@ exports.updateById = async (postUpdatedValues, req, res) => {
       post.content = postUpdatedValues.content;
       post.description = postUpdatedValues.description;
       post.category = postUpdatedValues.category;
-      
+
       post
         .save()
         .then(() => {
@@ -74,6 +74,21 @@ exports.addToDb = (payload, req, res) => {
       msg.flashMsg(req, 'error_msg', 'Failed to create post');
       res.redirect('/admin/post');
       console.log('🚀Something happened', err.code);
+    });
+};
+
+exports.deleteById = async (id, req, res) => {
+  const post = await this.findById(id);
+  Posts.deleteOne({ _id: id })
+    .then(() => {
+      msg.flashMsg(req, 'success_msg', 'Post successfully deleted');
+      res.redirect('/admin/posts');
+      console.log(`Post '${post.title}' was successfully deleted`);
+    })
+    .catch((err) => {
+      msg.flashMsg(req, 'error_msg', 'Failed to delete Post');
+      res.redirect('/admin/posts');
+      console.log('🚀Something happened', err);
     });
 };
 
