@@ -61,13 +61,13 @@
       <div class="card mb-1">
         <div class="card-body">
           <h4>{{ title }}</h4>
-          <small>{{ description }}</small>
           <br />
-          <p>{{ content }}</p>
+          <p>{{ description }}</p>
+          <a href="/posts/{{ slug }}"
+            ><button class="btn btn-info">Read more...</button></a
+          >
           <hr />
-          <small>{{ category.name }}</small
-          ><br />
-          <small>{{ date }}</small>
+          <small>{{ category.name }}</small>
         </div>
       </div>
       {{/postsByCategory}}
