@@ -56,8 +56,8 @@
       {{#error_msg}}
       <p class="alert alert-danger">{{ error_msg }}</p>
       {{/error_msg}}
-
-      {{#post}}
+      <h2>Posts linked to: {{ catFoundBySlug.name }}</h2>
+      {{#postsByCategory}}
       <div class="card mb-1">
         <div class="card-body">
           <h4>{{ title }}</h4>
@@ -70,10 +70,10 @@
           <small>{{ date }}</small>
         </div>
       </div>
-      {{/post}}
-      {{^post}}
+      {{/postsByCategory}}
+      {{^postsByCategory}}
       <p class="alert alert-info">There is nothing here yet</p>
-      {{/post}}
+      {{/postsByCategory}}
     </div>
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"

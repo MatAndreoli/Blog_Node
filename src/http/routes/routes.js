@@ -7,4 +7,8 @@ router.get('/', mainController.main);
 
 router.get('/posts/:slug', mainController.moreAboutPost);
 
+router.get('/cats', mainController.showCategories);
+
+router.get('/cats/:slug', mainController.showPostsByCategory);
+
 module.exports = router;

@@ -5,48 +5,58 @@ const Posts = mongoose.model('posts');
 const msg = require('../messages/messages');
 
 exports.findAll = async () => {
-  let posts;
-  await Posts.find()
+  return await Posts.find()
     .populate('category')
     .sort({ date: 'desc' })
     .then((pst) => {
-      posts = pst;
+      return pst;
     })
     .catch((err) => {
       console.log('🚀Something happened', err);
     });
-  return posts;
 };
 
 exports.findById = async (id, req, res) => {
-  let post;
-  await Posts.findById(id)
-    .then((pst) => {
-      post = pst;
+  return await Posts.findById(id)
+    .then((post) => {
       console.log(`Post '${post.title}' was found`);
+      return post;
     })
     .catch((err) => {
       msg.flashMsg(req, 'error_msg', 'Failed to find Post');
       res.redirect('/admin/posts');
       console.log('🚀Something happened', err);
     });
-  return post;
 };
 
 exports.findBySlug = async (slug, req, res) => {
-  let post;
-  await Posts.findOne({ slug })
+  return await Posts.findOne({ slug })
     .populate('category')
-    .then((pst) => {
-      post = pst;
-      console.log(`Post '${post.title}' was found`);
+    .then((post) => {
+      console.log(`Post '${post.title}' was found by slug`);
+      return post;
     })
     .catch((err) => {
       msg.flashMsg(req, 'error_msg', 'Failed to find post by slug');
       res.redirect('/');
       console.log('🚀Something happened', err);
     });
-  return post;
+};
+
+exports.findPostsByCategoryId = async (category, req, res) => {
+  return await Posts.find({ category })
+    .populate('category')
+    .then((posts) => {
+      posts.forEach((post) => {
+        console.log(`Post '${post.title}' was found by category id`);
+      });
+      return posts;
+    })
+    .catch((err) => {
+      msg.flashMsg(req, 'error_msg', 'Failed to find post by category id');
+      res.redirect('/');
+      console.log('🚀Something happened', err);
+    });
 };
 
 exports.updateById = async (postUpdatedValues, req, res) => {

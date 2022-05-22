@@ -34,7 +34,7 @@
               <a class="nav-link active" aria-current="page" href="/">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/cats">Categories</a>
+              <a class="nav-link" href="#">Categories</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Login</a>
@@ -57,23 +57,19 @@
       <p class="alert alert-danger">{{ error_msg }}</p>
       {{/error_msg}}
 
-      {{#post}}
+      {{#cats}}
       <div class="card mb-1">
         <div class="card-body">
-          <h4>{{ title }}</h4>
-          <small>{{ description }}</small>
-          <br />
-          <p>{{ content }}</p>
-          <hr />
-          <small>{{ category.name }}</small
-          ><br />
-          <small>{{ date }}</small>
+          <h4>{{ name }}</h4>
+          <a href="/cats/{{ slug }}"
+            ><small>{{ slug }}</small></a
+          >
         </div>
       </div>
-      {{/post}}
-      {{^post}}
+      {{/cats}}
+      {{^cats}}
       <p class="alert alert-info">There is nothing here yet</p>
-      {{/post}}
+      {{/cats}}
     </div>
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"

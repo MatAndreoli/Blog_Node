@@ -5,31 +5,45 @@ const Categoria = mongoose.model('categories');
 const msg = require('../messages/messages');
 
 exports.findAll = async () => {
-  let categories;
-  await Categoria.find()
+  return await Categoria.find()
     .sort({ date: 'desc' })
     .then((cats) => {
-      categories = cats;
+      return cats;
     })
     .catch((err) => {
       console.log('🚀Something happened', err);
     });
-  return categories;
 };
 
 exports.findById = async (id, req, res) => {
-  let category;
-  await Categoria.findById(id)
+  return await Categoria.findById(id)
     .then((cat) => {
-      category = cat;
-      console.log(`Category '${cat.name}' was found`);
+      console.log(`Category '${cat.name}' was found by id`);
+      return cat;
     })
     .catch((err) => {
       msg.flashMsg(req, 'error_msg', 'Failed to find category');
       res.redirect('/admin/cats');
       console.log('🚀Something happened', err);
     });
-  return category;
+};
+
+exports.findPostsByCategorySlug = async (categorySlug, postUC, req, res) => {
+  var postsByCategory;
+  var catFoundBySlug;
+
+  return await Categoria.findOne({ slug: categorySlug })
+    .then(async (cat) => {
+      catFoundBySlug = cat;
+      console.log(`Category '${cat.name}' was found by slug`);
+      postsByCategory = await postUC.findPostsByCategoryId(cat._id, req, res);
+      return { postsByCategory, catFoundBySlug };
+    })
+    .catch((err) => {
+      msg.flashMsg(req, 'error_msg', 'Failed to find Category by slug');
+      res.redirect('/cats');
+      console.log('🚀Something happened', err);
+    });
 };
 
 exports.updateById = async (catUpdatedValues, req, res) => {
