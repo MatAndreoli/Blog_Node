@@ -7,3 +7,14 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=matheus
       - MONGO_INITDB_ROOT_PASSWORD=123456
+  blog_node:
+    build: .
+    command: 'npm start'
+    environment:
+      - NODE_ENV=prod
+    depends_on:
+      - mongo_db
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/usr/app
