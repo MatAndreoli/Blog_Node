@@ -2,10 +2,14 @@ const { Router } = require('express');
 const router = Router();
 const passport = require('passport');
 
-const isAuthenticatedMid = require('../../middlewares/isAuthenticated');
+const verificationMiddleware = require('../../middlewares/verificationMiddleware');
 const userController = require('../controllers/controllers/usersController');
 
-router.get('/register', isAuthenticatedMid.isAuthenticated, userController.register);
+router.get(
+  '/register',
+  verificationMiddleware.isAuthenticated,
+  userController.register
+);
 
 router.post('/create-account', userController.createAccount);
 

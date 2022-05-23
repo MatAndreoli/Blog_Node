@@ -15,7 +15,7 @@ require('./config/auth')(passport);
 const adminRoutes = require('./src/http/routes/adminRoutes');
 const routes = require('./src/http/routes/routes');
 const usersRoutes = require('./src/http/routes/usersRoutes');
-const validateAdmin = require('./src/middlewares/isAdmin');
+const verificationMiddleware = require('./src/middlewares/verificationMiddleware');
 
 //! Configs
 app.use(
@@ -54,7 +54,7 @@ app.use('/', routes);
 
 app.use('/users', usersRoutes);
 
-app.use('/admin', validateAdmin.isAdmin, adminRoutes);
+app.use('/admin', verificationMiddleware.isAdmin, adminRoutes);
 
 //! Starting Server
 const port = process.env.PORT || 8080;
