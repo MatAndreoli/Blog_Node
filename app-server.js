@@ -57,7 +57,8 @@ app.use('/users', usersRoutes);
 app.use('/admin', validateAdmin.isAdmin, adminRoutes);
 
 //! Starting Server
-const port = process.env.APP_PORT;
+const port = process.env.PORT || 8080;
+
 app.listen(port, () => {
   console.log('Server running on port', port);
 });

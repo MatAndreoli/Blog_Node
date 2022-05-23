@@ -5,13 +5,15 @@ services:
     ports:
       - 27017:27017
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=matheus
+      - MONGO_INITDB_ROOT_USERNAME=blog
       - MONGO_INITDB_ROOT_PASSWORD=123456
   blog_node:
     build: .
     command: 'npm start'
     environment:
-      - NODE_ENV=prod
+      - NODE_ENV=production
+      - PORT=3000
+      - DB_SERVICE_NAME=mongo_db
     depends_on:
       - mongo_db
     ports:
