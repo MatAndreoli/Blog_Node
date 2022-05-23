@@ -7,7 +7,6 @@ process.env.NODE_ENV == 'prod'
 ? process.env.DB_URI
 : process.env.DB_URI_LOCAL;
 
-console.log('🚀 ==> connectURI', connectURI);
 mongoose.Promise = global.Promise;
 mongoose
   .connect(connectURI)

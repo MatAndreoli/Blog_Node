@@ -36,6 +36,11 @@
             <li class="nav-item">
               <a class="nav-link" href="/cats">Categories</a>
             </li>
+            {{#user.isAdmin}}
+            <li class="nav-item">
+              <a class="nav-link" href="/admin">Admin</a>
+            </li>
+            {{/user.isAdmin}}
             {{#user}}
             <li class="nav-item">
               <a class="nav-link" href="/users/logout">Logout</a>
@@ -49,8 +54,6 @@
               <a class="nav-link" href="/users/register">Register</a>
             </li>
             {{/user}}
-              <a class="nav-link" href="/admin">Admin</a>
-            </li>
           </ul>
         </div>
       </div>
