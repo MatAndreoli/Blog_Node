@@ -2,6 +2,10 @@
   "name": "nodejs_project",
   "version": "1.0.0",
   "description": "A project in Node for study purposes",
+  "engines": {
+    "node": "16.x",
+    "npm": "8.x"
+  },
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./app-server.js",
